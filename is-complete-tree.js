@@ -10,8 +10,6 @@
  * @return {boolean}
  */
 var isCompleteTree = function (root) {
-  if (!root) return false;
-
   let queue = [root];
   let hitNull = false;
   while (queue.length) {
@@ -25,5 +23,5 @@ var isCompleteTree = function (root) {
     queue.push(curr.right);
   }
 
-  return this;
+  return true;
 };
