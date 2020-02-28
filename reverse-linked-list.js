@@ -10,7 +10,22 @@
  * @return {ListNode}
  */
 
-// Iterative
+// Iterative O(1) space
+var reverseList = function (head) {
+  let curr = head;
+  let prev = null;
+
+  while (curr) {
+    let next = curr.next;
+    curr.prev = prev;
+    prev = curr;
+    curr = next;
+  }
+
+  return prev;
+}
+ 
+// Iterative O(n) space
 var reverseList = function (head) {
   let nodeArr = [];
   let curr = head;
