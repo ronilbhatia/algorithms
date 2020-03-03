@@ -10,6 +10,57 @@
  * @return {boolean}
  */
 
+// O(1) space forreal -> Reverse first half of linked list
+var isPalindrome = function (head) {
+  if (!head || !head.next) return true;
+  let fast = slow = head;
+  let rev = null;
+
+  while (fast && fast.next) {
+    fast = fast.next.next;
+    let oldRev = rev;
+    rev = slow
+    slow = slow.next;
+    rev.next = oldRev;
+  }
+  let secondHalf = fast ? slow.next : slow;
+  while (secondHalf) {
+    if (secondHalf.val !== rev.val) return false;
+    secondHalf = secondHalf.next;
+    rev = rev.next;
+  }
+
+  return true;
+}
+
+// Add some prev pointers
+var isPalindrome = function (head) {
+  if (!head || !head.next) return true;
+
+  let prev = head;
+  let curr = head.next;
+  let length = 1;
+  
+  while (curr) {
+    length++;
+    curr.prev = prev;
+    prev = curr;
+    curr = curr.next;
+  }
+
+  let first = head;
+  let last = prev;
+  let times = Math.floor(length / 2);
+
+  for (let i = 0; i < times; i++) {
+    if (first.val !== last.val) return false;
+    first = first.next;
+    last = last.prev;
+  }
+
+  return true;
+}
+
 // Iterative
 var isPalindrome = function (head) {
   let list = []
