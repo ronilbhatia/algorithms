@@ -90,7 +90,6 @@ function addOne(binary) {
     }
   }
 
-
   if (zeroIndex === undefined) {
     let result = '1';
     for (let i = 0; i < binary.length; i++) result += '0';
