@@ -2,6 +2,26 @@
  * @param {string} s
  * @return {boolean}
  */
+// Cleaner
+var checkValidString = function (s) {
+  let [left, right] = [0, 0]
+
+  for (let i = 0; i < s.length; i++) {
+    (s[i] === ')') ? right += 1 : left += 1;
+    if (right > left) return false;
+  }
+
+  [left, right] = [0, 0];
+
+  for (let i = s.length - 1; i >= 0; i--) {
+    (s[i] === '(') ? left += 1 : right += 1;
+    if (left > right) return false;
+  }
+
+  return true;
+};
+
+// Clearer
 var checkValidString = function (s) {
   let left = 0;
   let right = 0;
