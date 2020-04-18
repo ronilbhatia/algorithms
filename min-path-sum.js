@@ -4,6 +4,28 @@
  */
 
 // DP Solution
+var minPathSum = function(grid) {
+  if (!grid.length || !grid[0].length) return 0;
+
+  let dp = new Array(grid.length).fill(0);
+  dp[0] = grid[0][0];
+  for (let i = 1; i < dp.length; i++) dp[i] = dp[i-1] + grid[0][i];
+
+  for (let i = 1; i < grid.length; i++) {
+    for (let j = 0; j < dp.length; j++) {
+      if (j === 0) {
+        dp[j] = dp[j] + grid[i][j];
+      } else {
+        let best = Math.min(dp[j-1], dp[j]);
+        dp[j] = best + grid[i][j];
+      }
+    }
+  }
+
+  return dp[dp.length - 1];
+}
+ 
+// DP Solution
 var minPathSum = function (grid) {
   if (!grid.length || !grid[0].length) return 0;
 
